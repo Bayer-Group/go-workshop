@@ -1,0 +1,41 @@
+site_name: MonsantoCo Go Workshop
+site_url: https://github.com/MonsantoCo/go-workshop-docs/ # TODO
+site_description: Hands-on Go workshop
+
+markdown_extensions:
+  - admonition
+  - def_list
+  - attr_list
+  - codehilite
+  - pymdownx.details
+  - pymdownx.superfences
+
+theme:
+  name: material
+  logo:
+    icon: home
+  palette:
+    primary: cyan
+    accent: amber
+nav:
+  - Home: 'index.md'
+  - Introduction: 'introduction.md'
+  - Basics:
+    - 01 - fmt-y Dumpty: '01fmt.md'
+    - 02 - On one conditional: '02conditionals.md'
+    - 03 - A healthy slice of arrays: '03slices.md'
+    - 04 - Stuck in the loop with you: '04loops.md'
+    - 05 - Becoming a functioning Gopher: '05functions.md'
+    - 06 - I am Error: '06errors.md'
+  - Intermediate:
+    - 07 - Don't panic: '07panics.md'
+    - 08 - Get to the point: '08pointers.md'
+    - 09 - Hardwired to self de-struct: '09structs.md'
+    - 10 - Unlike a user interface, these take a bit of explanation: '10interfaces.md'
+    - 11 - Getting into the routine: '11goroutines.md'
+    - 12 - Now you're thinking with channels: '12channels.md'
+  - Advanced:
+    - 13 - Staying anonymous: '13currying.md'
+    - 14 - Getting out of sync: '14async.md'
+    - 15 - Here's your package: '15packages.md'
+    - 16 - Taken out of context: '16context.md'
