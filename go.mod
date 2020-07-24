@@ -1,3 +1,3 @@
-module github.platforms.engineering/commit-gophers/go-workshop
+module github.com/MonsantoCo/go-workshop
 
 go 1.13
