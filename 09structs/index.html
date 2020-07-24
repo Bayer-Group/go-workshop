@@ -1,0 +1,847 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on Go workshop">
+      
+      
+        <link rel="canonical" href="https://github.com/MonsantoCo/go-workshop-docs/09structs/">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.1">
+    
+    
+      
+        <title>09 - Hardwired to self de-struct - MonsantoCo Go Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a676eddb.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.b302131d.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#00bcd4">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="cyan" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#structs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://github.com/MonsantoCo/go-workshop-docs/" title="MonsantoCo Go Workshop" class="md-header-nav__button md-logo" aria-label="MonsantoCo Go Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MonsantoCo Go Workshop
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              09 - Hardwired to self de-struct
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://github.com/MonsantoCo/go-workshop-docs/" title="MonsantoCo Go Workshop" class="md-nav__button md-logo" aria-label="MonsantoCo Go Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>
+
+    </a>
+    MonsantoCo Go Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01fmt/" title="01 - fmt-y Dumpty" class="md-nav__link">
+      01 - fmt-y Dumpty
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02conditionals/" title="02 - On one conditional" class="md-nav__link">
+      02 - On one conditional
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03slices/" title="03 - A healthy slice of arrays" class="md-nav__link">
+      03 - A healthy slice of arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04loops/" title="04 - Stuck in the loop with you" class="md-nav__link">
+      04 - Stuck in the loop with you
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05functions/" title="05 - Becoming a functioning Gopher" class="md-nav__link">
+      05 - Becoming a functioning Gopher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06errors/" title="06 - I am Error" class="md-nav__link">
+      06 - I am Error
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Intermediate
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Intermediate" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Intermediate
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07panics/" title="07 - Don't panic" class="md-nav__link">
+      07 - Don't panic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08pointers/" title="08 - Get to the point" class="md-nav__link">
+      08 - Get to the point
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        09 - Hardwired to self de-struct
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="09 - Hardwired to self de-struct" class="md-nav__link md-nav__link--active">
+      09 - Hardwired to self de-struct
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structs" class="md-nav__link">
+    structs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    methods
+  </a>
+  
+    <nav class="md-nav" aria-label="methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pointer-vs-value-receiver" class="md-nav__link">
+    pointer vs value receiver
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on" class="md-nav__link">
+    Hands on!
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10interfaces/" title="10 - Unlike a user interface, these take a bit of explanation" class="md-nav__link">
+      10 - Unlike a user interface, these take a bit of explanation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../11goroutines/" title="11 - Getting into the routine" class="md-nav__link">
+      11 - Getting into the routine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../12channels/" title="12 - Now you're thinking with channels" class="md-nav__link">
+      12 - Now you're thinking with channels
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Advanced" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Advanced
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../13currying/" title="13 - Staying anonymous" class="md-nav__link">
+      13 - Staying anonymous
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../14async/" title="14 - Getting out of sync" class="md-nav__link">
+      14 - Getting out of sync
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../15packages/" title="15 - Here's your package" class="md-nav__link">
+      15 - Here's your package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../16context/" title="16 - Taken out of context" class="md-nav__link">
+      16 - Taken out of context
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structs" class="md-nav__link">
+    structs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    methods
+  </a>
+  
+    <nav class="md-nav" aria-label="methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pointer-vs-value-receiver" class="md-nav__link">
+    pointer vs value receiver
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on" class="md-nav__link">
+    Hands on!
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>09 - Hardwired to self de-struct</h1>
+                
+                <p>Covered in this module:</p>
+<ul>
+<li>structs</li>
+<li>methods</li>
+</ul>
+<h2 id="structs">structs</h2>
+<p>Go structs are a way of collecting related items into an object/record:
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">character</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">class</span> <span class="kt">string</span>
+    <span class="nx">level</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Struct properties are mutable and can be accessed with dot notation:
+<div class="highlight"><pre><span></span><code><span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+<span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+</code></pre></div></p>
+<details class="example"><summary>prints</summary><div class="highlight"><pre><span></span><code>Helmut Van Kaiser
+Fighter
+4
+5
+</code></pre></div>
+
+</details>
+<p>Struct properties are not required at initialization and are zero-valued by default:
+<div class="highlight"><pre><span></span><code><span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+</code></pre></div></p>
+<details class="example"><summary>prints</summary><div class="highlight"><pre><span></span><code>Helmut Van Kaiser
+
+0
+</code></pre></div>
+
+</details>
+<p>Passing a struct as a pointer avoids making another copy:
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+    <span class="nx">levelUp</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">char</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">levelUp</span><span class="p">(</span><span class="nx">char</span> <span class="o">*</span><span class="nx">character</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<details class="example"><summary>prints</summary><div class="highlight"><pre><span></span><code>Helmut Van Kaiser
+Fighter
+4
+5
+</code></pre></div>
+
+</details>
+<h2 id="methods">methods</h2>
+<p>Structs can have methods that have access to struct properties:
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">character</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">class</span> <span class="kt">string</span>
+    <span class="nx">level</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">char</span> <span class="o">*</span><span class="nx">character</span><span class="p">)</span> <span class="nx">levelUp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<details class="example"><summary>prints</summary><div class="highlight"><pre><span></span><code>Helmut Van Kaiser
+Fighter
+4
+5
+</code></pre></div>
+
+</details>
+<h3 id="pointer-vs-value-receiver">pointer vs value receiver</h3>
+<p>You can pass your struct by value or by reference to your method. If your method needs to modify the struct in some way, it must be passed as a pointer.<br />
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">character</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">class</span> <span class="kt">string</span>
+    <span class="nx">level</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">char</span> <span class="o">*</span><span class="nx">character</span><span class="p">)</span> <span class="nx">levelUp</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// pointer receiver</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">char</span> <span class="nx">character</span><span class="p">)</span> <span class="nx">card</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="c1">// value receiver</span>
+    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;Player %v is a level %v %v&quot;</span><span class="p">,</span> <span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">,</span> <span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">card</span><span class="p">())</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">card</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By convention, receiver names should be related to the struct in some way. A receiver for <code>character</code> struct might be <code>c</code> or <code>char</code> but never <code>self</code> or <code>this</code>. All methods for the same struct should share the same receiver name, regardless of if they are pointer or value receivers.</p>
+</div>
+<p>The compiler does <strong>not</strong> catch cases where your method modifies your struct passed by value:
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">character</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">class</span> <span class="kt">string</span>
+    <span class="nx">level</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">char</span> <span class="nx">character</span><span class="p">)</span> <span class="nx">levelUp</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// value receiver</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span> <span class="c1">// level++ modifies the struct copy</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">char</span> <span class="o">:=</span> <span class="nx">character</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Helmut Van Kaiser&quot;</span><span class="p">,</span> <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;Fighter&quot;</span><span class="p">,</span> <span class="nx">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">class</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+    <span class="nx">char</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">char</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<details class="example"><summary>prints</summary><div class="highlight"><pre><span></span><code>Helmut Van Kaiser
+Fighter
+4
+4
+</code></pre></div>
+
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are linters such as <a href="https://github.com/mgechev/revive">revive</a> available to help catch cases like this, which can be tricky to notice manually.</p>
+</div>
+<h2 id="hands-on">Hands on!</h2>
+<ol>
+<li>In the repo, open the file <code>./intermediate/09structs.go</code></li>
+<li>Complete the TODOs</li>
+<li>Run <code>make 09</code> from project root (alternatively, type <code>go run ./09structs.go</code>)</li>
+<li>Example implementation available on <code>solutions</code> branch</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../08pointers/" title="08 - Get to the point" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                08 - Get to the point
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../10interfaces/" title="10 - Unlike a user interface, these take a bit of explanation" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                10 - Unlike a user interface, these take a bit of explanation
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.c51dfa35.min.js"></script>
+      <script src="../assets/javascripts/bundle.eaaa3931.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.58d22e8e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
