@@ -1,5 +1,5 @@
 site_name: MonsantoCo Go Workshop
-site_url: https://github.com/MonsantoCo/go-workshop-docs/ # TODO
+site_url:  https://MonsantoCo.github.io/go-workshop/
 site_description: Hands-on Go workshop
 
 markdown_extensions:
@@ -12,8 +12,8 @@ markdown_extensions:
 
 theme:
   name: material
-  logo:
-    icon: home
+  icon:
+    logo: material/home
   palette:
     primary: cyan
     accent: amber
