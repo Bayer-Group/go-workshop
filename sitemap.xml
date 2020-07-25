@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/introduction/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/introduction/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/01fmt/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/01fmt/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/02conditionals/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/02conditionals/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/03slices/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/03slices/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/04loops/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/04loops/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/05functions/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/05functions/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/06errors/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/06errors/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/07panics/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/07panics/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/08pointers/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/08pointers/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/09structs/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/09structs/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/10interfaces/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/10interfaces/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/11goroutines/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/11goroutines/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/12channels/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/12channels/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/13currying/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/13currying/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/14async/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/14async/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/15packages/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/15packages/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://github.com/MonsantoCo/go-workshop-docs/16context/</loc>
+     <loc>https://MonsantoCo.github.io/go-workshop/16context/</loc>
      <lastmod>2020-07-24</lastmod>
      <changefreq>daily</changefreq>
     </url>
