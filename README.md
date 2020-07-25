@@ -1,10 +1,10 @@
-# go-workshop
-Structured hands-on workshop for learning Go
+# go-workshop ([https://MonsantoCo.github.io/go-workshop/](https://MonsantoCo.github.io/go-workshop/))
+Structured hands-on workshop for learning Go. 
 
 ## Workshop Outline
 The 'Basics' module starts with the components that you will see across most commonly-used languages then delves into 'Intermediate' with the concepts and structures that set Go apart.  The 'Advanced' module builds on those concepts and introduces several new built-in components.
 
-The intended flow of the workshop is to go through each module's presentation on the deployed static pages one part at a time and complete the TODOs in the associated hands-on exercises.  Each part has its own make command to simplify running the code.
+The intended flow of the workshop is to go through each module's presentation on the [GitHub pages](https://MonsantoCo.github.io/go-workshop/) one part at a time and complete the TODOs in the associated hands-on exercises.  Each part has its own make command to simplify running the code.
 
 ### Basics - common language structures, the Go way
 
