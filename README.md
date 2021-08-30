@@ -1,10 +1,10 @@
-# go-workshop ([https://MonsantoCo.github.io/go-workshop/](https://MonsantoCo.github.io/go-workshop/))
+# go-workshop ([https://Bayer-Group.github.io/go-workshop/](https://Bayer-Group.github.io/go-workshop/))
 Structured hands-on workshop for learning Go. 
 
 ## Workshop Outline
 The 'Basics' module starts with the components that you will see across most commonly-used languages then delves into 'Intermediate' with the concepts and structures that set Go apart.  The 'Advanced' module builds on those concepts and introduces several new built-in components.
 
-The intended flow of the workshop is to go through each module's presentation on the [GitHub pages](https://MonsantoCo.github.io/go-workshop/) one part at a time and complete the TODOs in the associated hands-on exercises.  Each part has its own make command to simplify running the code.
+The intended flow of the workshop is to go through each module's presentation on the [GitHub pages](https://Bayer-Group.github.io/go-workshop/) one part at a time and complete the TODOs in the associated hands-on exercises.  Each part has its own make command to simplify running the code.
 
 ### Basics - common language structures, the Go way
 
@@ -115,7 +115,7 @@ As of Go 1.11, Go has built-in dependency management via [Go Modules](https://bl
 ### go mod
 [This tutorial](https://blog.golang.org/using-go-modules) is recommended to get going with Go Modules, but here is a quick way to get started:
 
-When spinning up a new Go project or converting an older project (from `dep` for example), you can simply run `go mod init <path>` and Go will initialize a `go.mod` for your project. A `<path>` structure should be origin/org/repo (e.g. `github.com/MonsantoCo/go-workshop`). That path allows other projects to find yours on the web and is especially important in cases where your repo is intended to be a module/import for another project. 
+When spinning up a new Go project or converting an older project (from `dep` for example), you can simply run `go mod init <path>` and Go will initialize a `go.mod` for your project. A `<path>` structure should be origin/org/repo (e.g. `github.com/Bayer-Group/go-workshop`). That path allows other projects to find yours on the web and is especially important in cases where your repo is intended to be a module/import for another project. 
 
 Now running any Go command (e.g. `go build` or `go test`) from within your project will trigger a go module check that will download and attempt to resolve any dependencies in your project. Dependencies both direct and indirect will be noted in `go.mod` and checksums will be saved in `go.sum`. Both files should be committed to your central repo.
 

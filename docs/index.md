@@ -6,7 +6,7 @@ The language sports a robust set of native libraries including a simple-to-use h
 Since Go can be compiled to [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), it is possible to build Go modules to be run in the browser.
 
 ## To get started
-The workshop repository with hands-on examples is [here](https://github.com/MonsantoCo/go-workshop) with setup instructions.
+The workshop repository with hands-on examples is [here](https://github.com/Bayer-Group/go-workshop) with setup instructions.
 
 ## Workshop Structure
 The 'Basics' module starts with the components that you will see across most common languages then delves into 'Intermediate' where we explore the concepts and structures that set Go apart. The 'Advanced' module builds on those concepts and introduces several new built-in components.
